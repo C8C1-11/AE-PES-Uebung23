@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AE-PES-Uebung23", "AE-PES-Uebung23\AE-PES-Uebung23.vcxproj", "{669E12A5-921F-4A0B-B565-20D2B3899336}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Teronis.VCPlusPlus.Core", "..\teronis-vcplusplus-core\Teronis.VCPlusPlus.Core\Teronis.VCPlusPlus.Core.vcxproj", "{2630C33C-AC3D-462D-AF27-697580AF0D7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{669E12A5-921F-4A0B-B565-20D2B3899336}.Release|x64.Build.0 = Release|x64
 		{669E12A5-921F-4A0B-B565-20D2B3899336}.Release|x86.ActiveCfg = Release|Win32
 		{669E12A5-921F-4A0B-B565-20D2B3899336}.Release|x86.Build.0 = Release|Win32
+		{2630C33C-AC3D-462D-AF27-697580AF0D7C}.Debug|x64.ActiveCfg = Debug|x64
+		{2630C33C-AC3D-462D-AF27-697580AF0D7C}.Debug|x64.Build.0 = Debug|x64
+		{2630C33C-AC3D-462D-AF27-697580AF0D7C}.Debug|x86.ActiveCfg = Debug|Win32
+		{2630C33C-AC3D-462D-AF27-697580AF0D7C}.Debug|x86.Build.0 = Debug|Win32
+		{2630C33C-AC3D-462D-AF27-697580AF0D7C}.Release|x64.ActiveCfg = Release|x64
+		{2630C33C-AC3D-462D-AF27-697580AF0D7C}.Release|x64.Build.0 = Release|x64
+		{2630C33C-AC3D-462D-AF27-697580AF0D7C}.Release|x86.ActiveCfg = Release|Win32
+		{2630C33C-AC3D-462D-AF27-697580AF0D7C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

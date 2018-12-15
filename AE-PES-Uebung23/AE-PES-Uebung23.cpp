@@ -3,10 +3,44 @@
 
 #include "pch.h"
 #include <iostream>
+#include <string>
+#include "Tools/Character.h"
+#include "Tools/Math.h"
+
+using namespace std;
+using namespace Teronis::VCPlusPlus::Tools;
 
 int main()
 {
-    std::cout << "Hello World!\n"; 
+	/* The declaration of the variables. */
+	const int jStringLength = 30;
+	char jString[jStringLength];
+	int d, jStartIndex, jBackIndex, jSpaceIndex, j = 0;
+
+	cout << "input: ";
+	cin >> jString;
+
+	int dSemicolonIndex = CharacterTools::searchCharacter(jString, jStringLength, ';');
+
+	if (0 >= dSemicolonIndex)
+		throw std::invalid_argument("bad input");
+
+	d = CharacterTools::transformCharsToNumber(jString, jStringLength, 0, dSemicolonIndex - 1);
+	jStartIndex = dSemicolonIndex + 1;
+
+	jSpaceIndex = CharacterTools::searchCharacter(jString, jStringLength, '\0', jStartIndex);
+
+	if (-1 == jSpaceIndex)
+		jBackIndex = jStringLength - 1;
+	else
+		jBackIndex = jSpaceIndex - 1;
+
+	j = CharacterTools::transformCharsToNumber(jString, jStringLength, jStartIndex, jBackIndex);
+	cout << MathTools::calcLeapYearWeekDayName(j, d);
+
+	cout << "\n";
+	system("pause");
+	return 0;
 }
 
 // Programm ausführen: STRG+F5 oder "Debuggen" > Menü "Ohne Debuggen starten"
