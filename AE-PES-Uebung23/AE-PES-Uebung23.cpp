@@ -21,31 +21,33 @@ const int userInputStringLength = 30;
 
 char userInputString[userInputStringLength];
 
-void enterBadState(string reason) {
-	// print error to console
-	cerr << reason << endl;
-	// reset user input string array
-	memset(userInputString, 0, sizeof(userInputString));
+void cleanInStream() {
 	// clear failed state of in stream
 	cin.clear();
 	// ignore garbage
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
+void enterBadState(string reason) {
+	// print error to console
+	cerr << reason << endl;
+}
+
 int main()
 {
-	// This disables the CONTROL-C exception, but while running it over visual studio,
-	// you have to disable the CONTROL-C exception in the excpetion settings by yourself.
-	// The CONTROL-C exception itself cannot be catched in try or __try block.
-	//
-	// "If the HandlerRoutine parameter is NULL, a TRUE value causes the calling process 
-	//  to ignore CTRL+C input, and a FALSE value restores normal processing of CTRL+C
-	//  input. This attribute of ignoring or processing CTRL+C is inherited by child
-	//  processes." (https://docs.microsoft.com/en-us/windows/console/setconsolectrlhandler)
-	SetConsoleCtrlHandler(NULL, TRUE);
+	// It is not working ...
+	//// This disables the CONTROL-C exception, but while running it over visual studio,
+	//// you have to disable the CONTROL-C exception in the excpetion settings by yourself.
+	//// The CONTROL-C exception itself cannot be catched in try or __try block.
+	////
+	//// "If the HandlerRoutine parameter is NULL, a TRUE value causes the calling process 
+	////  to ignore CTRL+C input, and a FALSE value restores normal processing of CTRL+C
+	////  input. This attribute of ignoring or processing CTRL+C is inherited by child
+	////  processes." (https://docs.microsoft.com/en-us/windows/console/setconsolectrlhandler)
+	//SetConsoleCtrlHandler(NULL, TRUE);
 	cout << "This program prints out the week day name of a date.\n";
-	cout << "The following formats are supported:\n1. 'year_days;years'\n2. 'month_days;months;years'\n";
-	cout << "Just type something like '1;2000' or '1;1;2000' and hit enter.\n";
+	cout << "The following formats are supported:\n1. year_day;year\n2. month_day;month;year\n";
+	cout << "Just type something like [0]1;2000 or [0]1;[0]1;2000 and hit enter.\n";
 	cout << "To leave this application type Q+ENTER.\n";
 
 	while (true) {
@@ -56,11 +58,19 @@ int main()
 
 		while (true) {
 			cout << "> ";
-
+			
+			if (userInputString[0] != 0)
+				// reset user input string array
+				memset(userInputString, 0, sizeof(userInputString));
+			
 			if (cin >> userInputString) {
+				// clean in stream: It allows input like "20;2000 dasdj das adjl..."
+				cleanInStream();
+				// Look for exit letter ...
 				int exit = !CharacterTools::searchCharacter(userInputString, userInputStringLength, 'q', 0, 0) || !CharacterTools::searchCharacter(userInputString, userInputStringLength, 'Q', 0, 0);
 
 				if (exit)
+					// ... and stop application.
 					stop(0);
 
 				firstSemicolonIndex = CharacterTools::searchCharacter(userInputString, userInputStringLength, ';');
